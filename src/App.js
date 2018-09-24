@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import Forme from "./components/Forme";
+import Todo from "./components/Todo";
 
 class App extends Component {
   constructor() {
@@ -10,8 +11,8 @@ class App extends Component {
       message: "hellow from coding garden",
       newtodo: "",
       todos: [
-        { title: "learn react", done: "false" },
-        { title: "learn JS", done: "true" }
+        { title: "learn react", done: false },
+        { title: "learn JS", done: true }
       ]
     };
   }
@@ -48,25 +49,44 @@ class App extends Component {
     // });
   }
 
+  toggle(event, index) {
+    // console.log(index);
+
+    // we give react copy of state not changing it
+
+    const todos = [...this.state.todos]; // copy of the array
+    todos[index] = { ...todos[index] }; // copy of todo
+    todos[index.done] = event.target.checked; // update done property
+    console.log(todos);
+    this.setState({
+      todos
+    });
+  }
+
+  del(index) {
+    console.log(index);
+    const todos = [...this.state.todos]; // copy of the array
+    todos.splice(index, 1);
+
+    this.setState({
+      todos
+    });
+  }
+
   render() {
     return (
       <div>
         <h3>{this.state.message}</h3>
-        <form action="" onSubmit={e => this.formsubmit(e)}>
-          <label htmlFor="todo">New Todo</label>
-          <input
-            onChange={e => this.change(e)}
-            type="text"
-            id="newtodo"
-            value={this.state.newtodo}
-          />
-          <button type="submit">Submit</button>
-          <ul>
-            {this.state.todos.map(val => {
-              return <li key={val.title}> {val.title} </li>;
-            })}
-          </ul>
-        </form>
+        <Forme
+          newtodo={this.state.newtodo}
+          change={this.change.bind(this)}
+          formsubmit={this.formsubmit.bind(this)}
+        />
+        <Todo
+          todos={this.state.todos}
+          toggle={this.toggle.bind(this)}
+          del={this.del.bind(this)}
+        />
       </div>
     );
   }
