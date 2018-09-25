@@ -8,7 +8,7 @@ class App extends Component {
     super();
 
     this.state = {
-      message: "hellow from coding garden",
+      message: "Todo App",
       newtodo: "",
       todos: [
         { title: "learn react", done: false },
@@ -27,17 +27,25 @@ class App extends Component {
 
   formsubmit(event) {
     event.preventDefault();
-    console.log(this.state.newtodo);
-    this.setState({
-      newtodo: "",
-      todos: [
-        ...this.state.todos,
-        {
-          title: this.state.newtodo,
-          done: false
-        }
-      ]
-    });
+    const field = event.target.elements.inpute.value;
+
+    //console.log(this.state.newtodo);
+
+    if (field) {
+      this.setState({
+        newtodo: "",
+        todos: [
+          ...this.state.todos,
+          {
+            title: this.state.newtodo,
+            done: false
+          }
+        ]
+      });
+    } else {
+      alert("Please Enter Todo....");
+      return false;
+    }
 
     // this.state.todos.push({      we dont wanna use that cause its bad if we change state value
     //   title: this.state.newtodo,

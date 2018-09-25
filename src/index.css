@@ -1,6 +1,6 @@
 body {
-  margin: 0;
-  padding: 0;
+  margin: 1rem;
+  padding: 1rem;
   font-family: sans-serif;
 }
 
@@ -8,6 +8,12 @@ input[type="checkbox"] {
   display: inline;
   width: auto;
   margin-left: 0;
+  margin-right: 1rem;
+}
+
+#newtodo {
+  padding: 0.5rem;
+  margin: 5px;
 }
 
 #boto {
@@ -15,7 +21,11 @@ input[type="checkbox"] {
   width: 2rem;
   font-size: 1rem;
 }
+#bot {
+  padding: 0px;
+  margin-left: 10px;
+}
 
-.done {
-  text-decoration: line-through;
+li {
+  margin: 7px;
 }

@@ -10,8 +10,12 @@ const Items = props => {
         type="checkbox"
       />
       <span className={val.done ? "done" : " "}>{val.title}</span>
-      <button onClick={e => props.del(index)} id="boto">
-        Del
+      <button
+        className="btn btn-danger"
+        onClick={e => props.del(index)}
+        id="bot"
+      >
+        del
       </button>
     </li>
   );
